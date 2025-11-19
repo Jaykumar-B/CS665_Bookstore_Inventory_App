@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authors</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Authors</h1>
+  <table border="1">
+    <tr>
+      <th>Author Name</th>
+      <th>Books Count</th>
+    </tr>
+    {% for a, count in authors %}
+    <tr>
+      <td>{{ a }}</td>
+      <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="/">Back to Dashboard</a>
+</body>
+</html>

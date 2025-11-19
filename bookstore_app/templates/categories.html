@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Categories</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Book Categories</h1>
+  <table border="1">
+    <tr>
+      <th>Category Name</th>
+      <th>Books Count</th>
+    </tr>
+    {% for c, count in categories %}
+    <tr>
+      <td>{{ c }}</td>
+      <td>{{ count }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="/">Back to Dashboard</a>
+</body>
+</html>

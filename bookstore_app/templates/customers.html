@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customers</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Customers</h1>
+
+  <!-- Add Customer Form -->
+  <form method="POST" style="margin-bottom: 20px;">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phone" placeholder="Phone" required>
+    <button type="submit">Add Customer</button>
+  </form>
+
+  <!-- Customer List -->
+  <table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Actions</th>
+  </tr>
+  {% for c in customers %}
+  <tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.phone }}</td>
+<td>
+  <a href="{{ url_for('customer_orders', id=c.id) }}">View Orders</a> |
+  <a href="{{ url_for('delete_customer', id=c.id) }}">Delete</a>
+</td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+
+  <br>
+  <a href="/">Back to Dashboard</a>
+</body>
+</html>
