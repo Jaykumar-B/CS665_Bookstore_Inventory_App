@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore Inventory Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f2ff, #ede2ff);
+            color: #1e1e2f;
+        }
+
+        /* Top Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 14px 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-left h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right a img {
+            width: 26px;
+            height: 26px;
+            margin-right: 6px;
+            border-radius: 50%;
+        }
+
+        .nav-right a:hover {
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 70px;
+        }
+
+        .links a {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-right: 10px;
+            color: #4a4a6a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .links a:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        h2 {
+            color: #2b2b4f;
+        }
+
+        /* Chart Section */
+        .chart-container {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .chart-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <h1>📚 Bookstore Inventory Dashboard</h1>
+        </div>
+        <div class="nav-right">
+            <a href="/books">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Books">
+                Books
+            </a>
+            <a href="/customers">
+                <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Customers">
+                Customers
+            </a>
+            <a href="/orders">
+                <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Orders">
+                Orders
+            </a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <p><b>Welcome to the Bookstore Inventory System.</b> Use the links below to view and manage data.</p>
+        <div class="links">
+            <a href="/books">📘 Manage Books</a>
+            <a href="/customers">👤 Manage Customers</a>
+            <a href="/orders">🛒 Manage Orders</a>
+            <a href="/authors">✍️ View Authors</a>
+            <a href="/categories">📂 View Categories</a>
+        </div>
+
+        <h2>📊 Books by Category</h2>
+        <div class="chart-container">
+            <p class="chart-title">📈 Interactive Category Distribution</p>
+            <canvas id="categoryChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('categoryChart');
+        const labels = {{ labels | tojson | safe }};
+        const counts = {{ counts | tojson | safe }};
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Books by Category',
+                    data: counts,
+                    backgroundColor: [
+                        '#ffb366', '#c78aff', '#ff6680', '#66c7ff', '#8affb3', '#ffc04d'
+                    ],
+                    borderRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#333' }
+                    },
+                    x: {
+                        ticks: { color: '#333' }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, labels: { color: '#2b2b4f' } }
+                }
+            }
+        });
+    </script>
+    
+
+</body>
+</html>

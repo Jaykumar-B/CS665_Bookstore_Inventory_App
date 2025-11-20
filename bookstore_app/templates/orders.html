@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Orders</h1>
+
+<form method="POST" style="margin-bottom: 20px;">
+  <select name="customer_id" required>
+    <option value="">Select Customer</option>
+    {% for c in customers %}
+      <option value="{{ c.id }}">{{ c.name }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="book_title" id="bookSelect" required>
+    <option value="">Select Book</option>
+    {% for b in books %}
+      <option value="{{ b.title }}">{{ b.title }}</option>
+    {% endfor %}
+  </select>
+
+  <!-- Book price auto-filled -->
+  <input type="number" id="bookPrice" name="price" placeholder="Book Price" step="0.01" required>
+
+  <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+  <button type="submit">Add Order</button>
+</form>
+
+<script>
+  // Auto-fill price when selecting a book
+  const bookSelect = document.getElementById('bookSelect');
+  const bookPrice = document.getElementById('bookPrice');
+
+  bookSelect.addEventListener('change', async function() {
+    const title = this.value;
+    if (title) {
+      const response = await fetch(`/get_book_price/${encodeURIComponent(title)}`);
+      const data = await response.json();
+      bookPrice.value = data.price;
+    } else {
+      bookPrice.value = '';
+    }
+  });
+</script>
+
+
+  <!-- Orders Table -->
+  <table border="1">
+    <tr>
+      <th>Customer</th>
+      <th>Book</th>
+      <th>Quantity</th>
+      <th>Total Amount</th>
+      <th>Actions</th>
+    </tr>
+    {% for o in orders %}
+    <tr>
+      <td>{{ customer_dict[o.customer_id] }}</td>
+      <td>{{ o.book_title }}</td>
+      <td>{{ o.quantity }}</td>
+      <td>{{ o.total_amount }}</td>
+      <td><a href="/delete_order/{{ o.id }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <a href="/">Back to Dashboard</a>
+</body>
+</html>

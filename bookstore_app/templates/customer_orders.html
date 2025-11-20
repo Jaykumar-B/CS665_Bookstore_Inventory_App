@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ customer.name }} - Orders</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #b3cfff, #dfbaff);
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #1e1e2f;
+            text-align: center;
+        }
+
+        .customer-info {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #4e73df;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+        }
+
+        tr:hover {
+            background: #f5f7ff;
+        }
+
+        a.back-link {
+            display: block;
+            margin: 30px auto;
+            width: fit-content;
+            text-decoration: none;
+            font-size: 18px;
+            color: #2b2b4f;
+            font-weight: 600;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Order History for {{ customer.name }}</h1>
+
+    <div class="customer-info">
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Phone:</strong> {{ customer.phone }}</p>
+    </div>
+
+    {% if orders %}
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+            <th>Date</th>
+        </tr>
+
+        {% for o in orders %}
+        <tr>
+            <td>{{ o.book_title }}</td>
+            <td>{{ o.quantity }}</td>
+            <td>${{ "%.2f"|format(o.total_amount) }}</td>
+            <td>{{ o.order_date.strftime('%Y-%m-%d') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+    <h2 style="text-align:center; color:#1e1e2f;">No orders found for this customer.</h2>
+    {% endif %}
+
+    <a class="back-link" href="{{ url_for('customers') }}">← Back to Customers</a>
+
+</body>
+</html>
