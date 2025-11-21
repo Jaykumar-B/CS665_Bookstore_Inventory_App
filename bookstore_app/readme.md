@@ -18,3 +18,9 @@ This project is a Flask-based Bookstore Inventory System that supports CRUD oper
 3. Install dependencies  
 
 4. Run Flask  
+
+📚 Bookstore Inventory System
+
+A simple and efficient web-based inventory management system built using Flask, SQLite, and Python.
+This application allows an admin to manage books, customers, orders, and categories in an organized interface.
+
