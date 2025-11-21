@@ -43,3 +43,12 @@ Simple admin-friendly UI
 Secure backend structure
 
 Supports images, prices, and stock quantity
+
+
+
+🏗️ Tech Stack
+Layer	Technology
+Backend	Python, Flask
+Database	SQLite
+Frontend	HTML, CSS, Bootstrap
+ORM	SQLAlchemy
