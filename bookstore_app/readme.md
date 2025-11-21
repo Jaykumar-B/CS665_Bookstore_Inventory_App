@@ -52,3 +52,7 @@ Backend	Python, Flask
 Database	SQLite
 Frontend	HTML, CSS, Bootstrap
 ORM	SQLAlchemy
+
+
+The business domain chosen for this project is a Book Inventory Management System designed for administrative use. The primary goal of this web application is to allow an administrator to efficiently manage and monitor essential business data, including books, authors, categories, customers, and orders. The system provides a streamlined interface where the admin can perform all fundamental CRUD operations—Create, Read, Update, and Delete—making the management of bookstore resources both intuitive and scalable.
+Upon adding new information, the application automatically interacts with the backend to create and store all relevant data in the database. This ensures accurate record-keeping and minimizes manual entry errors. The interface developed in this project demonstrates how a modern inventory system can support real-time data entry and management across multiple business entities.
