@@ -60,11 +60,14 @@ Upon adding new information, the application automatically interacts with the ba
 
 1.	User Authentication
 
- 
+![Home Page](C:\Users\dell\OneDrive\Desktop\DB\bookstore_app\bookstore_app\Scrrenshots\User.png)
 Username: admin
 Password: admin123
 
+
 2.	Web Application
+### Web page 
+![Add Book](screenshots/add_book.png)
  
 
 
