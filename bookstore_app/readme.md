@@ -8,3 +8,13 @@ This project is a Flask-based Bookstore Inventory System that supports CRUD oper
 - View book categories and authors
 - SQLite database integration
 - Simple admin dashboard
+
+## How to Run
+
+1. Create virtual environment  
+
+2. Activate  
+
+3. Install dependencies  
+
+4. Run Flask  
