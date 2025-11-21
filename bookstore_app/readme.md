@@ -24,3 +24,22 @@ This project is a Flask-based Bookstore Inventory System that supports CRUD oper
 A simple and efficient web-based inventory management system built using Flask, SQLite, and Python.
 This application allows an admin to manage books, customers, orders, and categories in an organized interface.
 
+
+🚀 Features
+
+CRUD operations for Books
+
+CRUD operations for Customers
+
+Create and track Orders
+
+Auto-updating SQLite database
+
+Category and author management
+
+Simple admin-friendly UI
+
+
+Secure backend structure
+
+Supports images, prices, and stock quantity
